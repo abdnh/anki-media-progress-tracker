@@ -175,6 +175,7 @@ def download_pasted_pdfs(
             fname = editor._retrieveURL(href)
             if fname:
                 tag["href"] = fname
+                tag.string.replace_with(fname)
     html = str(doc)
     _old(editor, html, internal, extended)
 
