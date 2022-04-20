@@ -1,4 +1,4 @@
-from typing import Any, Dict
+from typing import Any, Dict, Tuple, List
 import json
 from pathlib import Path
 
@@ -95,8 +95,8 @@ def get_audio_progress(filename: str) -> Dict:
 
 
 def handle_js_request(
-    handled: tuple[bool, Any], message: str, context: Any
-) -> tuple[bool, Any]:
+    handled: Tuple[bool, Any], message: str, context: Any
+) -> Tuple[bool, Any]:
     parts = message.split(":")
     cmd = parts[0]
     if cmd != consts.CMD:
@@ -130,7 +130,7 @@ def write_mpv_conf() -> None:
         file.write("save-position-on-quit=yes\n")
 
 
-def prevent_audio_playback(card: Card, tags: list[AVTag], side: str):
+def prevent_audio_playback(card: Card, tags: List[AVTag], side: str):
     if not tags:
         # autoplay disabled
         tags = card.question_av_tags() if side == "q" else card.answer_av_tags()
