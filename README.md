@@ -20,7 +20,7 @@ The add-on also saves video positions, assuming you're using mpv, which is what 
 
 ## Known Issues
 
-- [ ] standard Anki shortcuts to control audio doesn't work with audio files controlled by the add-on for now.
+- [ ] standard Anki shortcuts to control audio don't work with audio files controlled by the add-on for now.
 - [ ] HTML audio controls and progress saving don't work in the previewer and card layouts screens.
 
 ## TODO
