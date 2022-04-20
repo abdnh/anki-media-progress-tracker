@@ -18,9 +18,6 @@ function onPDFViewerLoaded() {
 function renderPDFLinks(basePath) {
     const links = document.getElementById("qa").querySelectorAll('a[href$=".pdf"]');
     links.forEach(link => {
-        // Do not render PDFs from different origins as they will fail to load anyway
-        const hrefURL = new URL(link.href);
-        if (location.origin !== hrefURL.origin) return;
         const filename = filenameFromUrl(link.href);
         pycmd(`media-progress-tracker:get:${filename}`, fileData => {
             const page = fileData.page;
