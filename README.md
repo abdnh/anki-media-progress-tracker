@@ -6,6 +6,10 @@ For PDFs, you have to link to the files in your notes (which are assumed to be i
 <a href="test.pdf">test.pdf</a>
 ```
 
+Anki doesn't download pasted links to PDFs automatically and leave the absolute URLs intact, which
+will cause the PDF viewer to fail to load. So this add-on modifies that behavior to download
+PDFs automatically to your media folder.
+
 When you review a card, the add-on will render the file inside the card,
 and the last page viewed will be saved and restored in subsequent reviews.
 
@@ -22,6 +26,7 @@ The add-on also saves video positions, assuming you're using mpv, which is what 
 ## TODO
 
 - [ ] add option to enable audio progress saving only on some notetypes.
+- [ ] make PDF downloading on paste optional?
 
 ## Credit
 

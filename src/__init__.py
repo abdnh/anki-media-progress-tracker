@@ -5,6 +5,7 @@ from pathlib import Path
 from anki.cards import Card
 from aqt import mw
 from aqt.qt import *
+from aqt.editor import Editor
 from aqt.reviewer import Reviewer
 from aqt.browser.previewer import Previewer
 from aqt.clayout import CardLayout
@@ -18,6 +19,8 @@ from aqt.gui_hooks import (
 )
 from anki.sound import SoundOrVideoTag, AVTag
 from aqt.sound import is_audio_file
+from anki.hooks import wrap
+from bs4 import BeautifulSoup
 
 from . import consts
 
@@ -158,6 +161,24 @@ def prevent_audio_playback(card: Card, tags: List[AVTag], side: str):
     tags.extend(new_tags)
 
 
+def download_pasted_pdfs(
+    editor: Editor,
+    html: str,
+    internal: bool,
+    extended: bool = False,
+    _old: Any = None,
+):
+    doc = BeautifulSoup(html, "html.parser")
+    for tag in doc("a"):
+        href = tag["href"]
+        if editor.isURL(href) and href.endswith(".pdf"):
+            fname = editor._retrieveURL(href)
+            if fname:
+                tag["href"] = fname
+    html = str(doc)
+    _old(editor, html, internal, extended)
+
+
 webview_will_set_content.append(append_webcontent)
 card_will_show.append(on_card_will_show)
 webview_did_receive_js_message.append(handle_js_request)
@@ -167,4 +188,5 @@ reviewer_will_play_question_sounds.append(
 reviewer_will_play_answer_sounds.append(
     lambda c, tags: prevent_audio_playback(c, tags, "a")
 )
+Editor.doPaste = wrap(Editor.doPaste, download_pasted_pdfs, "around")
 write_mpv_conf()
