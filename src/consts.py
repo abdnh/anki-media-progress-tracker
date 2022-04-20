@@ -8,3 +8,6 @@ USER_FILES.mkdir(exist_ok=True)
 PDF_PROGRESS_FILE = USER_FILES / "pdf.json"
 if not PDF_PROGRESS_FILE.exists():
     PDF_PROGRESS_FILE.write_text("{}", encoding="utf-8")
+AUDIO_PROGRESS_FILE = USER_FILES / "audio.json"
+if not AUDIO_PROGRESS_FILE.exists():
+    AUDIO_PROGRESS_FILE.write_text("{}", encoding="utf-8")
