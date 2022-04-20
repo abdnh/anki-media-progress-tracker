@@ -1,7 +1,7 @@
 function filenameFromUrl(url) {
     const components = url.split("/");
     const filename = components[components.length - 1];
-    return filename;
+    return decodeURIComponent(filename);
 }
 
 function onPDFViewerLoaded() {
