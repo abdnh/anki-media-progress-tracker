@@ -1,4 +1,4 @@
-Anki add-on that saves your progress on media files embedded in cards such PDFs and videos.
+Anki add-on that saves your progress on viewing media files embedded in cards such PDFs, audios, and videos.
 
 For PDFs, you have to link to the files in your notes (which are assumed to be in your media folder) like so:
 
@@ -13,7 +13,7 @@ PDFs automatically to your media folder.
 When you review a card, the add-on will render the file inside the card,
 and the last page viewed will be saved and restored in subsequent reviews.
 
-Audio buttons are converted by the add-on to media players with basic HTML controls and the progress is saved
+Audio buttons are converted by the add-on to media players with basic HTML controls and progress is saved
 and restored between reviews.
 
 The add-on also saves video positions, assuming you're using mpv, which is what the latest versions of Anki use by default.
